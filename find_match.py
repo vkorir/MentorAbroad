@@ -1,41 +1,3 @@
-# sample json data in a dictionary
-data = {
-    "mentors": [
-        {
-            "id": "1",
-            "uni": "stanford",
-            "major": "eecs",
-            "country": "usa",
-            "home": "kenya"
-        },
-        {
-            "id": "2",
-            "uni": "berkeley",
-            "major": "cs",
-            "country": "usa",
-            "home": "drc"
-        },
-        {
-            "id": "3",
-            "uni": "mit",
-            "major": "eecs",
-            "country": "usa",
-            "home": "kenya"
-        }
-    ],
-    "mentees": [
-        {
-            "uni": ["mit", "berkeley", "stanford"],
-            "major": ["eecs", "cs"],
-            "country": ["usa", "canada"],
-            "home": ["kenya"],
-            "mentor": None,
-            "preference": []
-        }
-    ]
-}
-
-
 # given a mentee, return the 3 best matching mentors to the mentee
 def find_match(mentee):
     result = [["", 0]] * 3          # [highest, middle, lowest] ==> (key=mentor_id, v=score)
@@ -73,4 +35,39 @@ def find_match(mentee):
 
     return [best[0] for best in result]   # return a list of mentor ids
 
-find_match(data["mentees"][0])
+# sample json data in a dictionary
+data = {
+    "mentors": [
+        {
+            "id": "1",
+            "uni": "stanford",
+            "major": "eecs",
+            "country": "usa",
+            "home": "kenya"
+        },
+        {
+            "id": "2",
+            "uni": "berkeley",
+            "major": "cs",
+            "country": "usa",
+            "home": "drc"
+        },
+        {
+            "id": "3",
+            "uni": "mit",
+            "major": "eecs",
+            "country": "usa",
+            "home": "kenya"
+        }
+    ],
+    "mentees": [
+        {
+            "uni": ["mit", "berkeley", "stanford"],
+            "major": ["eecs", "cs"],
+            "country": ["usa", "canada"],
+            "home": ["kenya"],
+            "mentor": None,
+            "preference": []
+        }
+    ]
+}
