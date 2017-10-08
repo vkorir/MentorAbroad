@@ -2,9 +2,12 @@
     {
         "uid": "",
         "name": "",
+        "username": "",
+        "email": "",
         "universities": [],
         "majors": [],
         "schools": [],
-        "residence": ""
+        "residence": "",
+        "mentor": ""
     }
 ]

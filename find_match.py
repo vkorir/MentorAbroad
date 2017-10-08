@@ -12,28 +12,31 @@ def find_match(mentee):
     for me in mentors:
         uni, major, country, home = me["uni"], me["major"], me["country"], me["home"]
         score = 0
+        MAX_MENTEES = 10
 
-        # get the index/position of the mentor's attributes in the metees preference else -1 if not in the list
-        get_index = lambda key, val: mentee[key].index(val) if val in mentee[key] else -1
-        indices = [get_index("major", major), get_index("uni", uni), get_index("country", country), get_index("home", home)]
+        if len(me["mentees"]) < MAX_MENTEES:
+            # get the index/position of the mentor's attributes in the metees preference else -1 if not in the list
+            get_index = lambda key, val: mentee[key].index(val) if val in mentee[key] else -1
+            indices = [get_index("major", major), get_index("uni", uni), get_index("country", country), get_index("home", home)]
 
-        # calculate the mentors weight basing on the mentee's preference list
-        for index in range(len(indices)):
-            ind = indices[index]
-            if ind != -1:
-                score += (((len(mentee[keys[index]]) - ind) / len(mentee[keys[index]])) * weights[index]) / 10
+            # calculate the mentors weight basing on the mentee's preference list
+            for index in range(len(indices)):
+                ind = indices[index]
+                if ind != -1:
+                    score += (((len(mentee[keys[index]]) - ind) / len(mentee[keys[index]])) * weights[index]) / 10
 
-        # update the result and maintain the 3 most preferred mentors
-        if score > result[0][1]:
-            result = [[me["id"], score]] + result
-            result = result[:3]
-        elif score > result[1][1]:
-            result = [result[0], [me["id"], score], result[1]]
-        elif score > result[2][1]:
-            result = result[1:]
-            result.append([me["id"], score])
+            # update the result and maintain the 3 most preferred mentors
+            if score > result[0][1]:
+                result = [[me["id"], score]] + result
+                result = result[:3]
+            elif score > result[1][1]:
+                result = [result[0], [me["id"], score], result[1]]
+            elif score > result[2][1]:
+                result = result[1:]
+                result.append([me["id"], score])
 
     return [best[0] for best in result]   # return a list of mentor ids
+    # remember to update the mentees in the mentor
 
 # sample json data in a dictionary
 data = {
